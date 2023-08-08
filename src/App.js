@@ -1,24 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
 
+let form = {
+  num: 0,
+  nome: "Welen",
+  idade: 20
+}
 function App() {
+
+  const [count, setCount] = useState(0)
+  const mudarTitle = useEffect(() => {
+    let countPast = document.title
+    document.title = `Você digitou ${count} vezes!`
+    console.log(countPast)
+  })
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div><h2>Você digitou {count} vezes!</h2></div>
+      <div><button onClick={() => setCount(count + 1)}>Clicar</button></div>
+
+      <button onClick={() => {
+        form.num = count
+      }}>Enviar</button>
+
+    </>
   );
 }
 
