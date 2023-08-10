@@ -13,19 +13,26 @@ export const App = () => {
 
   const hoje = new Date()
   const personagem = {
-    nome: "DSpVuXI.png"
+    nome: "4tiuQXD.jpeg"
   }
-  const nome = {
-    pessoa: ""
+  const [nome, setNome] = useState("Digite alguma coisa na barra a cima!")
+
+  const handleNome = (newNome) => {
+    if (newNome.target.value == "") {
+      setNome("digite algo")
+    } else {
+      setNome(newNome.target.value)
+    }
   }
-  nome.pessoa = prompt("Qual o seu nome? ")
 
   return (
     <>
       <div><h2>Você digitou {count} vezes!</h2></div>
       <div><button onClick={() => setCount(count + 1)}>Clicar</button></div>
       <div>
-        <p>Hoje é {dataFormat(hoje)}, dia do {nome.pessoa}</p>
+        <input onChange={(newNome) => handleNome(newNome)}></input>
+        <p>Hoje é {dataFormat(hoje)}</p>
+        <button>{nome}</button>
       </div>
       <div>
         <Quadro url={'https://i.imgur.com/' + personagem.nome} size={100} personagem={personagem.nome}></Quadro>
@@ -35,5 +42,5 @@ export const App = () => {
 }
 
 const dataFormat = (data) => {
-  return new Intl.DateTimeFormat("pt-br", {weekday: "long"}).format(data)
+  return new Intl.DateTimeFormat("pt-br", { weekday: "long" }).format(data)
 }
